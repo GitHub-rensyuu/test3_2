@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+   # バリテーション設定
+  validates :name, uniqueness: true, presence: true,  length: { minimum: 2, maximum: 20}       # 「2文字以上,20文字以内」
+  validates :introduction, length: { maximum: 50 }# 「50文字以内」
+
   # 画像を扱えるようにする
   has_one_attached :profile_image
 

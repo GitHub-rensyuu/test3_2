@@ -1,14 +1,13 @@
 <div class="container px-5 px-sm-0">
   <!--エラーメッセージ-->
-  <!--%= render 'layouts/error_messages',  model:@user %>-->
+  <%= render 'layouts/error_messages',  model:@user %>
 
   <div class="row">
-    <!--<div class="col-md-3">-->
     <div class="col-md-3">
  <!--User info部分-->
       <%= render 'users/user', user: @user %>
 
- <!--New Book部分-->
+ <!--New book部分-->
       <h2>New book</h2>
       <%= render 'books/book', book: @book %>
 

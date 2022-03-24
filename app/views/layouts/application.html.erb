@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>G</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm mb-2">
+      <nav class="navbar navbar-expand-lg avbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand p-3 text-light" href="/">Bookers</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -21,23 +21,25 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
-
-          <% if user_signed_in? %>
+            <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to user_path(current_user), class:"nav-link text-light" do %>
                 <p><i class="fas fa-home"></i>Home</p>
               <% end %>
             </li>
+
             <li class="nav-item">
               <%= link_to users_path, class:"nav-link text-light" do %>
                 <p><i class="fas fa-users"></i>Users</p>
               <% end %>
             </li>
+
             <li class="nav-item">
               <%= link_to books_path, class:"nav-link text-light" do %>
                 <p><i class="fas fa-book-open"></i>Books</p>
               <% end %>
             </li>
+
             <li class="nav-item">
               <%= link_to destroy_user_session_path, method: :delete, class:"nav-link text-light" do %>
                 <p><i class="fas fa-sign-out-alt"></i>Log out</p>
@@ -70,21 +72,25 @@
             </li>
             <% end %>
 
-           </ul>
+            </ul>
+          </div>
         </div>
-      </div>>
-    </nav>
+      </nav>
+    </header>
+    <div class="body">
 
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}", style: "color:green") %>
+      <% end %>
+      <main>
+        <%= yield %>
+      </main>
 
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}", style: "color:green") %>
-    <% end %>
-    <main>
-      <%= yield %>
-    </main>
+    </div>
+
     <footer class="copy-right-footer mt-5">
       CopyRight Infratop.inc
     </footer>
+
   </body>
 </html>
-
